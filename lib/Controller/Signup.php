@@ -19,19 +19,27 @@ class Signup extends \MyApp\Controller{
         try{
             $this->_validate();
         }catch(\MyApp\Exception\InvalidEmail $e){
-            echo $e->getMessage();
-            exit;
+            //echo $e->getMessage();
+            //exit;
+            $this->setErrors('email',$e->getMessage());
         }catch(\MyApp\Exception\InvalidPassword $e){
-            echo $e->getMessage();
-            exit;
+            //echo $e->getMessage();
+            //exit;
+            $this->setErrors('password',$e->getMessage());
+        }
+        //echo 'うまくいったよ';
+        //exit;
+        $this->setValues('email',$_POST['email']);
+        if($this->hasError()){
+            return;//処理を止める
+        }else{
+            //create user
+
+
+            //redirect to Login
         
         }
-        echo 'うまくいったよ';
-        exit;
-        //create user
         
-        
-        //redirect to Login
     }
     
     private function _validate(){
